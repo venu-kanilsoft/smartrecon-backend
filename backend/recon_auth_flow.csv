@@ -1,0 +1,14 @@
+requirement,displayName,alias,requirementChoices,configurable,providerId,level,index,description,authenticationFlow
+REQUIRED,Review Profile,review profile config,"['REQUIRED', 'ALTERNATIVE', 'DISABLED']",True,idp-review-profile,0,0,,
+REQUIRED,Recon User creation or linking,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED', 'CONDITIONAL']",False,,0,1,Flow for the existing/non-existing user alternatives,True
+ALTERNATIVE,Create User If Unique,create unique user config,"['REQUIRED', 'ALTERNATIVE', 'DISABLED']",True,idp-create-user-if-unique,1,0,,
+ALTERNATIVE,Recon Handle Existing Account,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED', 'CONDITIONAL']",False,,1,1,Handle what to do if there is existing account with same email/username like authenticated identity provider,True
+REQUIRED,Confirm link existing account,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED']",False,idp-confirm-link,2,0,,
+REQUIRED,Recon Account verification options,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED', 'CONDITIONAL']",False,,2,1,Method with which to verity the existing account,True
+DISABLED,Verify existing account by Email,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED']",False,idp-email-verification,3,0,,
+REQUIRED,Recon Verify Existing Account by Re-authentication,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED', 'CONDITIONAL']",False,,3,1,Reauthentication of existing account,True
+REQUIRED,Username Password Form for identity provider reauthentication,,['REQUIRED'],False,idp-username-password-form,4,0,,
+DISABLED,Recon First broker login - Conditional OTP,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED', 'CONDITIONAL']",False,,4,1,Flow to determine if the OTP is required for the authentication,True
+REQUIRED,Condition - user configured,,"['REQUIRED', 'DISABLED']",False,conditional-user-configured,5,0,,
+REQUIRED,OTP Form,,"['REQUIRED', 'ALTERNATIVE', 'DISABLED']",False,auth-otp-form,5,1,,
+

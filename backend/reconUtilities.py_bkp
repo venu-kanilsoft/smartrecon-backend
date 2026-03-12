@@ -1,0 +1,20 @@
+import fastapi
+
+# class CyberUtilsCreate(framework.postgresmodel.BasePostgresModel):
+#     class Config:
+#         collection_name = 'test'
+
+
+# class CyberUtils(framework.postgresmodel.PostgresModel):
+#     class Config:
+#         collection_name = 'test'
+
+reconutils_router = fastapi.APIRouter(prefix="/reconutils")
+
+@reconutils_router.post('/upload', tags=['Recons'])
+async def upload(file: fastapi.UploadFile = fastapi.File(...)):
+    print("filename:", file.filename)
+    print("content type:", file.content_type)
+    contents = await file.read()
+    print("file contents:", contents)
+    return {"filename": file.filename}

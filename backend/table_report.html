@@ -1,0 +1,105 @@
+<div class="container">
+    {% if report_data.stats_counts %}
+    <table class="rounded-corner">
+        <thead>
+        <tr style="background-color:#3F6F92;color:white;">
+            {% for stat_data in report_data.stats_counts.get("stats") %}
+            <th>{{stat_data.get("title")}}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for stat_data in report_data.stats_counts.get("stats") %}
+            {% set height = '230' if stat_data.get("date") else '150' -%}
+            <td>
+                <b>
+                    {{stat_data.get("count")}}<br>
+                    {% if stat_data.get("count_of") %}
+                    Of {{stat_data.get("count_of")}}<br>
+                    {% endif %}
+                    {% if stat_data.get("date") %}
+                    {{stat_data.get("date")}}<br>
+                    {% endif %}</b>
+            </td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <table class="rounded-corner">
+        <thead>
+        <tr style="background-color:#3F6F92;color:white;">
+            {% for item, dispname in report_data.table_headers.items() %}
+            <th>{{ dispname }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for data in report_data.table_data %}
+        <tr>
+            {% for key,dispname in report_data.table_headers.items() %}
+            {% set keylist = key.split('.') %}
+            {% if keylist|length > 1 %}
+            {% set base = "-" -%}
+            {% if data.get(keylist[0], {}) != None and data.get(keylist[0], {}).get(keylist[1]) != None %}
+            {% set base = data.get(keylist[0], {}).get(keylist[1]) -%}
+            {% endif %}
+            {% else %}
+            {% set base = data.get(key, "") -%}
+            {% endif %}
+            {% if 'sub_table' in report_data.block_data and key in report_data.block_data['sub_table'] and key in data
+            %}
+            <td>
+                <table>
+                    {% for sdata in base %}
+                    <tr>
+                        {% for tkey, tval in report_data.block_data['sub_table'][key].items() %}
+                        {% if tval is mapping %}
+                        <td style="border: windowtext 0pt">{{ tval.get(sdata.get(tkey)) }}</td>
+                        {% else %}
+                        <td style="border: windowtext 0pt">{{ sdata.get(tval) }}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+            {% elif data["cyber_style"] is defined and data["cyber_style"][key] is defined %}
+            {% if data["cyber_style"][key]['format'] is defined and data["cyber_style"][key]['format']['style'] is
+            defined %}
+            {% set start_instyle = "" -%}
+            {% set end_instyle = "" -%}
+            {% if "bold" in data["cyber_style"][key]['format']['style'] %}
+            {% set start_instyle = start_instyle + "<b>" -%}
+            {% set end_instyle = end_instyle + "</b>" -%}
+            {% endif %}
+            {% if "italic" in data["cyber_style"][key]['format']['style'] %}
+            {% set start_instyle = start_instyle + "<i>" -%}
+            {% set end_instyle = end_instyle + "</i>" -%}
+            {% endif %}
+            {% if "underline" in data["cyber_style"][key]['format']['style'] %}
+            {% set start_instyle = start_instyle + "<u>" -%}
+            {% set end_instyle = end_instyle + "</u>" -%}
+            {% endif %}
+            {% set base = start_instyle + base + end_instyle -%}
+            {% endif %}
+            {% if data["cyber_style"][key]['style_start'] is defined %}
+            <td style="{{data['cyber_style'][key]['style_start']}}">{{base}}{{data['cyber_style'][key]['style_end']}}
+            </td>
+            {% else %}
+            <td> {{base}}</td>
+            {% endif %}
+
+            {% else %}
+            <td>{{ base }}</td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% endif %}
+</div>

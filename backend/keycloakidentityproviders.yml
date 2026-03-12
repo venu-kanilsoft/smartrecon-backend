@@ -1,0 +1,61 @@
+- name: microsoft
+  image: microsoft
+  config:
+    - name: Client ID
+      key: clientId
+      description: The client identifier registered with the identity provider.
+      required: true
+      display: true
+      schema:
+        type: text
+    - name: Client Secret
+      key: clientSecret
+      description: The client identifier registered with the identity provider.
+      required: true
+      display: true
+      schema:
+        type: text
+  parameters:
+    alias: microsoft
+    providerId: microsoft
+- name: gitlab
+  image: gitlab
+  config:
+    - name: Client ID
+      key: clientId
+      description: The client identifier registered with the identity provider.
+      required: true
+      display: true
+      schema:
+        type: text
+    - name: Client Secret
+      key: clientSecret
+      description: The client identifier registered with the identity provider.
+      required: true
+      display: true
+      schema:
+        type: text
+  parameters:
+    alias: gitlab
+    providerId: gitlab
+- name: github
+  image: github
+  config:
+    - name: Client ID
+      key: clientId
+      description: The client identifier registered with the identity provider.
+      required: true
+      display: true
+      schema:
+        type: text
+    - name: Client Secret
+      key: clientSecret
+      description: The client identifier registered with the identity provider.
+      required: true
+      display: true
+      schema:
+        type: text
+  parameters:
+    alias: github
+    providerId: github
+

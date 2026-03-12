@@ -1,0 +1,209 @@
+{
+    "allowRemoteResourceManagement": true,
+    "policyEnforcementMode": "ENFORCING",
+    "decisionStrategy": "AFFIRMATIVE",
+    "resources": [
+        {
+            "name": "masterdatacrosswalk",
+            "type": "all",
+            "ownerManagedAccess": false,
+            "displayName": "MasterDataCrosswalk",
+            "attributes": {},
+            "uris": [
+                "/api/masterdatacrosswalk/*"
+            ],
+            "scopes": [
+                {
+                    "name": "create"
+                },
+                {
+                    "name": "update"
+                },
+                {
+                    "name": "read"
+                },
+                {
+                    "name": "delete"
+                },
+                {
+                    "name": "getmasterdatacrosswalkdata"
+                },
+                {
+                    "name": "uploadmasterdatacrosswalk"
+                },
+                {
+                    "name": "downloadcrosswalk"
+                },
+                {
+                    "name": "getcolumns"
+                },
+                {
+                    "name": "getsheetname"
+                }
+            ]
+        },
+        {
+            "name": "masterdatacrosswalk_readOnly",
+            "type": "readOnly",
+            "ownerManagedAccess": false,
+            "displayName": "MasterDataCrosswalk_readOnly",
+            "attributes": {},
+            "uris": [
+                "/api/masterdatacrosswalk/*"
+            ],
+            "scopes": [
+                {
+                    "name": "read"
+                },
+                {
+                    "name": "getmasterdatacrosswalkdata"
+                },
+                {
+                    "name": "downloadcrosswalk"
+                },
+                {
+                    "name": "getcolumns"
+                },
+                {
+                    "name": "getsheetname"
+                }
+            ]
+        },
+        {
+            "name": "masterdatacrosswalk_itAdmin",
+            "type": "itAdmin",
+            "ownerManagedAccess": false,
+            "displayName": "MasterDataCrosswalk_itAdmin",
+            "attributes": {},
+            "uris": [
+                "/api/masterdatacrosswalk/*"
+            ],
+            "scopes": [
+                {
+                    "name": "create"
+                },
+                {
+                    "name": "update"
+                },
+                {
+                    "name": "read"
+                },
+                {
+                    "name": "delete"
+                },
+                {
+                    "name": "getmasterdatacrosswalkdata"
+                },
+                {
+                    "name": "uploadmasterdatacrosswalk"
+                },
+                {
+                    "name": "downloadcrosswalk"
+                },
+                {
+                    "name": "getcolumns"
+                },
+                {
+                    "name": "getsheetname"
+                }
+            ]
+        }
+    ],
+    "policies": [
+        {
+            "name": "adminPolicy",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+                "roles": "[{\"id\":\"admin\",\"required\":false}]"
+            }
+        },
+        {
+            "name": "adminPermission",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+                "defaultResourceType": "all",
+                "applyPolicies": "[\"adminPolicy\"]"
+            }
+        },
+        {
+            "name": "readOnlyPolicy",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+                "roles": "[{\"id\":\"readOnly\",\"required\":false}]"
+            }
+        },
+        {
+            "name": "readOnlyPermission",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+                "defaultResourceType": "readOnly",
+                "applyPolicies": "[\"readOnlyPolicy\"]"
+            }
+        },
+        {
+            "name": "itAdminPolicy",
+            "type": "role",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+                "roles": "[{\"id\":\"readOnly\",\"required\":false}]"
+            }
+        },
+        {
+            "name": "itAdminPermission",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+                "defaultResourceType": "itAdmin",
+                "applyPolicies": "[\"itAdminPolicy\"]"
+            }
+        }
+    ],
+    "scopes": [
+        {
+            "name": "create",
+            "displayName": "create"
+        },
+        {
+            "name": "update",
+            "displayName": "update"
+        },
+        {
+            "name": "read",
+            "displayName": "read"
+        },
+        {
+            "name": "delete",
+            "displayName": "delete"
+        },
+        {
+            "name": "getmasterdatacrosswalkdata",
+            "displayName": "getmasterdatacrosswalkdata"
+        },
+        {
+            "name": "uploadmasterdatacrosswalk",
+            "displayName": "uploadmasterdatacrosswalk"
+        },
+        {
+            "name": "downloadcrosswalk",
+            "displayName": "downloadcrosswalk"
+        },
+        {
+            "name": "getcolumns",
+            "displayName": "getcolumns"
+        },
+        {
+            "name": "getsheetname",
+            "displayName": "getsheetname"
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Run Recon",
+    "uniqueId": "Run Recon",
+    "level": "Recon",
+    "verb": "FILE",
+    "path": "/data/ngerecon/reconengine/scripts",
+    "method": "runrecons",
+    "url": "/api/reconexecution/runrecons",
+    "reqFields": {
+      "reconids": {
+        "mandatory": true,
+        "type": "list"
+      },
+      "stmtdate": {
+        "mandatory": true,
+        "type": "str"
+      }
+    },
+     "defaultKeys": {},
+     "params": [
+      {"param": "reconids", "key":  "reconId", "type":  []},
+      {"param": "stmtdate", "key":  "stmtdate", "type":  ""}
+    ]
+  },
+  {
+    "name": "Get Feed Status",
+    "uniqueId": "Get Feed Status",
+    "level": "Recon",
+    "verb": "FILE",
+    "method": "feed_status_scheduler",
+    "path": "/data/ngerecon/reconengine/scripts",
+    "url": "/api/feedfile/feed_status_scheduler",
+    "reqFields": {
+      "reconList": {
+        "mandatory": true,
+        "type": "list"
+      },
+      "stmtdate": {
+        "mandatory": true,
+        "type": "str"
+      }
+    },
+    "params": [{"param": "reconList", "key":  "reconId", "type":  []},
+    {"param": "stmtdate", "key":  "stmtdate", "type":  ""}
+  ],
+    "defaultKeys": {}
+  },
+  {
+    "name": "Monitor Feed Path",
+    "uniqueId": "Monitor Feed Path",
+    "level": "Recon",
+    "verb": "FILE",
+    "path": "/data/ngerecon/reconengine/scripts",
+    "method": "monitorFeedPath",
+    "url": "/api/feedfile/monitorFeedPath",
+    "reqFields": {
+      "reconids": {
+        "mandatory": true,
+        "type": "list"
+      },
+      "stmtdate": {
+        "mandatory": true,
+        "type": "str"
+      }
+    },
+    "defaultKeys": {},
+    "params": [{"param": "reconids", "key":  "reconId", "type":  []},
+    {"param": "stmtdate", "key":  "stmtdate", "type":  ""}
+  ]
+  }
+]
